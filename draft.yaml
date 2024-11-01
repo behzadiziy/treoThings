@@ -1,5 +1,6 @@
 models:
-  # ...
-
-controllers:
-  # ...
+  Board:
+    title: string
+    user_id: unsignedBigInteger
+    relationships:
+      belongsTo: user

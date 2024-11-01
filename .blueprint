@@ -1,0 +1,7 @@
+created:
+    - database/factories/BoardFactory.php
+    - database/migrations/2024_10_31_145835_create_boards_table.php
+    - app/Models/board.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    board: { title: string, user_id: unsignedBigInteger, relationships: { belongsTo: user } }
