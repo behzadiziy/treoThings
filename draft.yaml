@@ -1,6 +1,26 @@
 models:
   Board:
     title: string
-    user_id: unsignedBigInteger
+    user_id: id foreign
     relationships:
       belongsTo: user
+      hasMany: column
+
+  Column:
+    title: string
+    user_id: id foreign
+    board_id : id foreign
+    order: unsignedInteger
+    relationships:
+      belongsTo: user,board
+      hasMany: card
+
+
+  Card:
+    title: string
+    notes: text nullable
+    user_id: id foreign
+    column_id : id foreign
+    order: unsignedInteger
+    relationships:
+      belongsTo: user,column

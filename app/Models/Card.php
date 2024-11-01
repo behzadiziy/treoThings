@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Board extends Model
+class Card extends Model
 {
     use HasFactory;
 
@@ -18,7 +17,10 @@ class Board extends Model
      */
     protected $fillable = [
         'title',
+        'notes',
         'user_id',
+        'column_id',
+        'order',
     ];
 
     /**
@@ -29,6 +31,8 @@ class Board extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
+        'column_id' => 'integer',
+        'order' => 'integer',
     ];
 
     public function user(): BelongsTo
@@ -36,8 +40,8 @@ class Board extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function columns(): HasMany
+    public function column(): BelongsTo
     {
-        return $this->hasMany(Column::class);
+        return $this->belongsTo(Column::class);
     }
 }

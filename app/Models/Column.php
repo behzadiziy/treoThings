@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Board extends Model
+class Column extends Model
 {
     use HasFactory;
 
@@ -19,6 +19,8 @@ class Board extends Model
     protected $fillable = [
         'title',
         'user_id',
+        'board_id',
+        'order',
     ];
 
     /**
@@ -29,6 +31,8 @@ class Board extends Model
     protected $casts = [
         'id' => 'integer',
         'user_id' => 'integer',
+        'board_id' => 'integer',
+        'order' => 'integer',
     ];
 
     public function user(): BelongsTo
@@ -36,8 +40,13 @@ class Board extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function columns(): HasMany
+    public function board(): BelongsTo
     {
-        return $this->hasMany(Column::class);
+        return $this->belongsTo(Board::class);
+    }
+
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class);
     }
 }

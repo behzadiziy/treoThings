@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::disableForeignKeyConstraints();
+
+        Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('notes')->nullable();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('column_id')->constrained();
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('boards');
+        Schema::dropIfExists('cards');
     }
 };

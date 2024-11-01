@@ -5,16 +5,17 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Board;
+use App\Models\Column;
 use App\Models\User;
 
-class BoardFactory extends Factory
+class ColumnFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Board::class;
+    protected $model = Column::class;
 
     /**
      * Define the model's default state.
@@ -24,6 +25,8 @@ class BoardFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'user_id' => User::factory(),
+            'board_id' => Board::factory(),
+            'order' => $this->faker->randomNumber(),
         ];
     }
 }

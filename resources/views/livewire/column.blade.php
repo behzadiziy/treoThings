@@ -4,7 +4,7 @@
         <div x-data="{ editing: false }" x-on:click.outside="editing = false"
             class="h-8 w-full flex items-center px-4 pr-0 min-w-0">
             <button class="text-left w-full font-medium" x-on:click="editing = true" x-show="!editing">
-                Column title
+                {{ $column->title }}
             </button>
 
             <template x-if="editing">
@@ -34,8 +34,8 @@
     </div>
 
     <div class="p-3 space-y-1.5 pt-0 overflow-y-scroll">
-        @foreach (range(1, random_int(1,15)) as $column)
-            <livewire:card />
+        @foreach ($cards as $card)
+            <livewire:card wire:key="$card->id" :card="$card" />
         @endforeach
     </div>
 
