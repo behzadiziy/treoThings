@@ -19,7 +19,8 @@ class BoardShow extends Component
     public CreateColumn $createColumnForm;
 
     protected $listeners = [
-        'archive-column' => '$refresh'
+        'archive-column' => '$refresh',
+        'board-updated' => '$refresh'
     ];
 
     public function mount()

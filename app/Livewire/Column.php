@@ -14,6 +14,7 @@ class Column extends Component
 
     protected $listeners = [
         'column-{column.id}-archived' => '$refresh',
+        'column-{column.id}-updated' => '$refresh',
     ];
 
     public function archiveColumn()
@@ -22,6 +23,7 @@ class Column extends Component
         $this->column->update([
             'archived_at' => now()
         ]);
+
 
         $this->dispatch('archive-column');
     }
