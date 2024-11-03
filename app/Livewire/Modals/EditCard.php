@@ -14,14 +14,25 @@ class EditCard extends ModalComponent
 
     public function mount()
     {
-        $this->editCardForm->fill($this->card->only('title' , 'notes'));
+        $this->editCardForm->fill($this->card->only('title', 'notes'));
+    }
+
+    public function archiveCard()
+    {
+        $this->card->update([
+            'archived_at' => now()
+        ]);
+
+        $this->dispatch('column-' . $this->card->column->id . '-archived');
+
+        $this->dispatch('closeModal');
     }
 
     public function updateCard()
     {
         $this->editCardForm->validate();
 
-        $this->card->update($this->editCardForm->only('title' , 'notes'));
+        $this->card->update($this->editCardForm->only('title', 'notes'));
 
         $this->dispatch('card-' . $this->card->id . '-updated');
 

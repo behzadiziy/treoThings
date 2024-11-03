@@ -12,6 +12,10 @@ class Column extends Component
 
     public CreateCardForm $createCardForm;
 
+    protected $listeners = [
+        'column-{column.id}-archived' => '$refresh',
+    ];
+
     public function createCard()
     {
         $this->createCardForm->validate();
@@ -28,7 +32,7 @@ class Column extends Component
     public function render()
     {
         return view('livewire.column', [
-            'cards' => $this->column->cards()->ordered()->get(),
+            'cards' => $this->column->cards()->ordered()->notArchive()->get(),
         ]);
     }
 }

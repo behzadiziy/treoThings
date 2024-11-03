@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('column_id')->constrained();
+            $table->timestamp('archived_at')->nullable();
             $table->unsignedInteger('order');
             $table->timestamps();
         });
