@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\EloquentSortable\Sortable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\EloquentSortable\SortableTrait;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Column extends Model implements Sortable
 {
@@ -28,6 +29,7 @@ class Column extends Model implements Sortable
         'user_id',
         'board_id',
         'order',
+        'archived_at',
     ];
 
     /**
@@ -41,6 +43,11 @@ class Column extends Model implements Sortable
         'board_id' => 'integer',
         'order' => 'integer',
     ];
+
+    public function scopeNotArchive(Builder $query)
+    {
+        $query->whereNull('archived_at');
+    }
 
     public function user(): BelongsTo
     {

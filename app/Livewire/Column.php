@@ -16,6 +16,16 @@ class Column extends Component
         'column-{column.id}-archived' => '$refresh',
     ];
 
+    public function archiveColumn()
+    {
+
+        $this->column->update([
+            'archived_at' => now()
+        ]);
+
+        $this->dispatch('archive-column');
+    }
+
     public function createCard()
     {
         $this->createCardForm->validate();
