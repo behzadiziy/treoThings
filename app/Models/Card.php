@@ -14,7 +14,7 @@ class Card extends Model implements Sortable
 
     public $sortable = [
         'order_column_name' => 'order',
-        'sort_when_creating' => true, 
+        'sort_when_creating' => true,
     ];
 
     /**
