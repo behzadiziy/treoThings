@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class BoardShow extends Component
 {
-
     public Board $board;
 
     public CreateColumn $createColumnForm;

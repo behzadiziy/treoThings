@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Archivable;
 use Spatie\EloquentSortable\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Card extends Model implements Sortable
 {
-    use HasFactory, SortableTrait;
+    use HasFactory, SortableTrait, Archivable;
 
     public $sortable = [
         'order_column_name' => 'order',
@@ -42,7 +43,6 @@ class Card extends Model implements Sortable
         'user_id' => 'integer',
         'column_id' => 'integer',
         'order' => 'integer',
-        'archived_at' => 'datetime'
     ];
 
     public function user(): BelongsTo
@@ -53,15 +53,5 @@ class Card extends Model implements Sortable
     public function column(): BelongsTo
     {
         return $this->belongsTo(Column::class);
-    }
-
-    public function scopeNotArchive(Builder $query)
-    {
-        $query->whereNull('cards.archived_at');
-    }
-
-    public function scopeArchived(Builder $query)
-    {
-        $query->whereNotNull('cards.archived_at');
     }
 }
