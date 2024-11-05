@@ -15,11 +15,6 @@ class Card extends Component
         'card-{card.id}-updated' => '$refresh',
     ];
 
-    public function scopeNotArchived(Builder $query)
-    {
-        $query->whereNull('archived_at');
-    }
-
     public function render()
     {
         return view('livewire.card');

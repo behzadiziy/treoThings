@@ -19,6 +19,8 @@ class EditCard extends ModalComponent
 
     public function archiveCard()
     {
+        $this->authorize('archiveCard', $this->card);
+
         $this->card->update([
             'archived_at' => now()
         ]);
@@ -30,6 +32,8 @@ class EditCard extends ModalComponent
 
     public function updateCard()
     {
+        $this->authorize('updateCard', $this->card);
+
         $this->editCardForm->validate();
 
         $this->card->update($this->editCardForm->only('title', 'notes'));
