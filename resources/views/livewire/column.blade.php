@@ -9,8 +9,9 @@
 
             <template x-if="editing">
                 <div>
-                    <form class="-ml-[calc(theme('margin[1.5]')+1px)] grow">
-                        <x-text-input value="column title" class="h-8 px-1.5 w-full" />
+                    <form class="-ml-[calc(theme('margin[1.5]')+1px)] grow" wire:submit='updateColumn'>
+                        <x-text-input value="Column Title" class="h-8 px-1.5 w-full"
+                            wire:model="updateColumnForm.title" x-init="$el.focus()"/>
 
                     </form>
                 </div>
@@ -26,7 +27,7 @@
                     </svg>
 
                 </x-slot>
-                <x-slot name="content" >
+                <x-slot name="content">
                     <x-dropdown-button wire:click="archiveColumn">
                         Archive
                     </x-dropdown-button>
@@ -35,7 +36,8 @@
         </div>
     </div>
 
-    <div class="p-3 space-y-1.5 pt-0 overflow-y-scroll" wire:sortable-group.item-group="{{ $column->id }}">
+    <div class="p-3 space-y-1.5 pt-0 overflow-y-scroll" wire:sortable-group.item-group="{{ $column->id }}"
+        wire:sortable-group.options="{ ghostClass: 'opacity-30' }">
         @foreach ($cards as $card)
             <div wire:key="{{ $card->id }}" wire:sortable-group.item="{{ $card->id }}">
                 <livewire:card :key="$card->id" :card="$card" />

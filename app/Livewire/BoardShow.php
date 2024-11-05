@@ -19,7 +19,8 @@ class BoardShow extends Component
 
     protected $listeners = [
         'archive-column' => '$refresh',
-        'board-updated' => '$refresh'
+        'board-updated' => '$refresh',
+        'update-column' => '$refresh',
     ];
 
     public function mount()

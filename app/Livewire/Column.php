@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\CreateCardForm;
+use App\Livewire\Forms\UpdateColumn;
 use App\Models\Column as ModelsColumn;
 use Livewire\Component;
 
@@ -12,10 +13,17 @@ class Column extends Component
 
     public CreateCardForm $createCardForm;
 
+    public UpdateColumn $updateColumnForm;
+
     protected $listeners = [
         'column-{column.id}-archived' => '$refresh',
         'column-{column.id}-updated' => '$refresh',
     ];
+
+    public function mount()
+    {
+        $this->updateColumnForm->fill($this->column->only('title'));
+    }
 
     public function archiveColumn()
     {
@@ -32,7 +40,7 @@ class Column extends Component
     public function createCard()
     {
         $this->authorize('createCard', $this->column);
-        
+
         $this->createCardForm->validate();
 
         $card = $this->column->cards()->make($this->createCardForm->only('title'));
@@ -42,6 +50,16 @@ class Column extends Component
         $this->createCardForm->reset();
 
         $this->dispatch('card-created');
+    }
+
+    public function updateColumn()
+    {
+        $this->authorize('updateColumn', $this->column);
+
+        $this->updateColumnForm->validate();
+        $this->column->update($this->updateColumnForm->only('title'));
+
+        $this->dispatch('update-column');
     }
 
     public function render()
