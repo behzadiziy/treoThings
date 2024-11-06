@@ -6,8 +6,11 @@
     </x-slot>
 
     <div class="py-12 space-y-10">
+
         <livewire:friend-index>
+
         <livewire:board-index>
+            
     </div>
 
 
