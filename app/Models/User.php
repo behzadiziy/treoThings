@@ -56,13 +56,15 @@ class User extends Authenticatable
     public function friendsTo(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id')
-            ->whitPivot('is_accepted', 'accepted_at');
+            ->withPivot('is_accepted', 'accepted_at')
+            ->withTimestamps();
     }
 
     public function friendsFrom(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id')
-            ->whitPivot('is_accepted', 'accepted_at');
+            ->withPivot('is_accepted', 'accepted_at')
+            ->withTimestamps();
     }
 
     public function pendingFriendsTo()
