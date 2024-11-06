@@ -86,4 +86,9 @@ class User extends Authenticatable
     {
         return $this->friendsFrom()->wherePivot('is_accepted', true);
     }
+
+    public function hasPendingFriendRequestFor(User $user)
+    {
+        return $this->pendingFriendsTo->contains($user);
+    }
 }
