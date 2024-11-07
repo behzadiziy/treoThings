@@ -35,8 +35,9 @@
             <x-input-error :messages="$errors->get('addNewFriendForm.email')" class="mt-1" />
         </div>
 
-        <x-primary-button>
-            Find
+        <x-primary-button wire:loading.attr="disabled">
+            <span wire:loading.remove >Find And Send Request</span>
+            <span wire:loading>Finding ... </span>
         </x-primary-button>
     </form>
 

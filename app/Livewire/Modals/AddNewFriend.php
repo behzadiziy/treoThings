@@ -23,14 +23,13 @@ class AddNewFriend extends ModalComponent
         }
 
         if (auth()->user()->hasPendingFriendRequestFor($user)) {
-            session()->flash('warning', 'A friend request is already pending.');
+            session()->flash('warning', "Waiting for $user->name to accept your request.");
             return;
         }
 
-
         auth()->user()->pendingFriendsTo()->attach($user);
 
-        $this->dispatch('update-friends');
+        $this->dispatch('update-friend-index');
         $this->dispatch('closeModal');
     }
 

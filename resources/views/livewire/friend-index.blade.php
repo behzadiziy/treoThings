@@ -8,8 +8,7 @@
                             <h2 class="text-lg font-semibold">MyFriends</h2>
                             <button
                                 class="border border-gray-200 rounded-lg px-3 py-2 bg-gray-200 shadow-sm flex items-center justify-between space-x-3"
-                                wire:click="$dispatch('openModal' , { component : 'modals.add-new-friend' })"
-                                >
+                                wire:click="$dispatch('openModal' , { component : 'modals.add-new-friend' })">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor" class="size-5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -38,24 +37,39 @@
                     <div class="space-y-3">
                         <h2 class="text-lg font-semibold">Friends Request</h2>
                         <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <a href="javascript:;">Friends</a>
-                                <div class="space-x-3">
-                                    <button>Accept</button>
-                                    <button>Reject</button>
+                            @forelse ($pendingFriendsFrom as $pendingRequestFrom)
+                                <div class="flex items-center justify-between" wire:key="{{ $pendingRequestFrom->id }}">
+                                    <a href="javascript:;">{{ $pendingRequestFrom->name }}</a>
+                                    <div class="space-x-3">
+                                        <button>Accept</button>
+                                        <button
+                                            wire:click="$dispatch('openModal' , { component: 'modals.reject-friend-request' , arguments : { pendingRequestFrom : {{ $pendingRequestFrom }} } })">Reject</button>
+                                    </div>
                                 </div>
-                            </div>
+                            @empty
+                                <span>You do not have friends request!</span>
+                            @endforelse
+
                         </div>
                     </div>
                     <div class="space-y-3">
                         <h2 class="text-lg font-semibold">Pending Friends Request</h2>
                         <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <a href="javascript:;">Friends</a>
-                                <div class="space-x-3">
-                                    <button>Cancel</button>
+                            @forelse ($pendingFriendsTo as $pendingRequestTo)
+                                <div class="flex items-center justify-between" wire:key="{{ $pendingRequestTo->id }}">
+                                    <a href="javascript:;">{{ $pendingRequestTo->name }}</a>
+                                    <div class="space-x-3">
+                                        <button
+                                            wire:click="$dispatch('openModal' , { component : 'modals.destroy-friend-request' , arguments: { pendingRequestTo : {{ $pendingRequestTo }} } })">
+                                            Cancel
+                                        </button>
+                                    </div>
+
+
                                 </div>
-                            </div>
+                            @empty
+                                <span>You do not have sending request!</span>
+                            @endforelse
                         </div>
                     </div>
                 </div>
