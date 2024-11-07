@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Staudenmeir\LaravelMergedRelations\Eloquent\HasMergedRelationships;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasMergedRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -90,5 +91,10 @@ class User extends Authenticatable
     public function hasPendingFriendRequestFor(User $user)
     {
         return $this->pendingFriendsTo->contains($user);
+    }
+
+    public function friends()
+    {
+        return $this->mergedRelationWithModel(User::class , 'friends_view');
     }
 }

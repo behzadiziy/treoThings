@@ -19,12 +19,18 @@
                             </button>
                         </div>
                         <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <a href="javascript:;">Friends</a>
-                                <div class="space-x-3">
-                                    <button>Unfriend</button>
+                            @forelse ($friends as $friend)
+                                <div class="flex items-center justify-between">
+                                    <a href="javascript:;">{{ $friend->name }}</a>
+                                    <div class="space-x-3">
+                                        <button wire:click="$dispatch('openModal' , {component : 'modals.unfriend'})">
+                                            Unfriend
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            @empty
+                            @endforelse
+
                         </div>
                     </div>
                 </div>
@@ -41,7 +47,8 @@
                                 <div class="flex items-center justify-between" wire:key="{{ $pendingRequestFrom->id }}">
                                     <a href="javascript:;">{{ $pendingRequestFrom->name }}</a>
                                     <div class="space-x-3">
-                                        <button>Accept</button>
+                                        <button
+                                            wire:click="acceptFriendRequest({{ $pendingRequestFrom->id }})">Accept</button>
                                         <button
                                             wire:click="$dispatch('openModal' , { component: 'modals.reject-friend-request' , arguments : { pendingRequestFrom : {{ $pendingRequestFrom }} } })">Reject</button>
                                     </div>

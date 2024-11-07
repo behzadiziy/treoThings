@@ -13,6 +13,7 @@
         "livewire/volt": "^1.0",
         "spatie/eloquent-sortable": "^4.4",
         "spatie/laravel-collection-macros": "^7.14",
+        "staudenmeir/laravel-merged-relations": "^1.0",
         "wire-elements/modal": "^2.0"
     },
     "require-dev": {
