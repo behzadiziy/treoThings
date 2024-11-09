@@ -18,11 +18,18 @@ class AddNewFriend extends ModalComponent
         $user = auth()->user();
 
 
-        $friend = User::where('email', $this->addNewFriendForm->only('email'))->first();
+        $friend = User::where('email', $this->addNewFriendForm->email)->first();
+
+
 
 
         if (!$friend) {
             session()->flash('error', 'No user found with this email.');
+            return;
+        }
+
+        if ($user->id === $friend->id) {
+            session()->flash('warning', 'You can not add yourself as a friend.');
             return;
         }
 
@@ -31,10 +38,14 @@ class AddNewFriend extends ModalComponent
             return;
         }
 
-        if (auth()->user()->hasPendingFriendRequestFor($friend)) {
-            session()->flash('warning', "Waiting for $friend->name to accept your request.");
+        if ($user->hasPendingFriendRequestFor($friend)) {
+            session()->flash('warning', "Waiting for {$friend->name} to accept your request.");
+            return;
+        } elseif ($friend->hasPendingFriendRequestFor($user)) {
+            session()->flash('warning', "Waiting for you to accept the request from {$friend->name}.");
             return;
         }
+
 
         $user->pendingFriendsTo()->attach($friend);
 
