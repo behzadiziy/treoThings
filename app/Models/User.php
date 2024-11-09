@@ -68,6 +68,11 @@ class User extends Authenticatable
             ->withTimestamps();
     }
 
+    public function isFriendsWith(User $user)
+    {
+        return $this->friends->contains($user);
+    }
+
     public function pendingFriendsTo()
     {
         return $this->friendsTo()->wherePivot('is_accepted', false);
@@ -95,6 +100,6 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->mergedRelationWithModel(User::class , 'friends_view');
+        return $this->mergedRelationWithModel(User::class, 'friends_view');
     }
 }

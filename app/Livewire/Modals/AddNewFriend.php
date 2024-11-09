@@ -15,19 +15,28 @@ class AddNewFriend extends ModalComponent
     {
         $this->addNewFriendForm->validate();
 
-        $user = User::where('email', $this->addNewFriendForm->only('email'))->first();
+        $user = auth()->user();
 
-        if (!$user) {
+
+        $friend = User::where('email', $this->addNewFriendForm->only('email'))->first();
+
+
+        if (!$friend) {
             session()->flash('error', 'No user found with this email.');
             return;
         }
 
-        if (auth()->user()->hasPendingFriendRequestFor($user)) {
-            session()->flash('warning', "Waiting for $user->name to accept your request.");
+        if ($user->isFriendsWith($friend)) {
+            session()->flash('warning', "You are already friends with $friend->name!");
             return;
         }
 
-        auth()->user()->pendingFriendsTo()->attach($user);
+        if (auth()->user()->hasPendingFriendRequestFor($friend)) {
+            session()->flash('warning', "Waiting for $friend->name to accept your request.");
+            return;
+        }
+
+        $user->pendingFriendsTo()->attach($friend);
 
         $this->dispatch('update-friend-index');
         $this->dispatch('closeModal');
