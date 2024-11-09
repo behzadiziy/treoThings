@@ -23,12 +23,17 @@
                                 <div class="flex items-center justify-between">
                                     <a href="javascript:;">{{ $friend->name }}</a>
                                     <div class="space-x-3">
-                                        <button wire:click="$dispatch('openModal' , {component : 'modals.unfriend'})">
+                                        <button
+                                            wire:click="$dispatch('openModal' , {component : 'modals.unfriend' , arguments : { friend : {{ $friend }} }})">
                                             Unfriend
                                         </button>
                                     </div>
                                 </div>
                             @empty
+                                <div
+                                    class="text-gray-700 font-semibold text-center border border-gray-200 rounded-lg px-3 py-5 my-3">
+                                    <p>No friends yet :(</p>
+                                </div>
                             @endforelse
 
                         </div>
