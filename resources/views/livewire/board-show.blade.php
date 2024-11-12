@@ -15,14 +15,37 @@
 
                 </x-slot>
                 <x-slot name="content">
-                    <x-dropdown-button
+                    <x-dropdown-button class="flex items-center space-x-2"
                         x-on:click="Livewire.dispatch('openModal' , {component: 'modals.card-archive' , arguments: { 'board': {{ $board->id }} } })">
-                        Archived Cards
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                        </svg>
+                        <span>Archived Cards</span>
                     </x-dropdown-button>
 
-                    <x-dropdown-button
+                    <x-dropdown-button class="flex items-center space-x-2"
                         x-on:click="Livewire.dispatch('openModal' , {component: 'modals.column-archive' , arguments: { 'board': {{ $board->id }} } })">
-                        Archived Columns
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                        </svg>
+
+                        <span>Archived Columns</span>
+                    </x-dropdown-button>
+
+                    <x-dropdown-button class="flex items-center space-x-2"
+                        x-on:click="Livewire.dispatch('openModal' , {component: 'modals.add-friends-to-board', arguments: { 'board': {{ $board->id }} } })">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+                        </svg>
+                        <span>Share</span>
+
                     </x-dropdown-button>
                 </x-slot>
             </x-dropdown>
@@ -31,10 +54,7 @@
 
     <div class="w-full p-6 overflow-x-scroll">
         <div class="flex w-max space-x-6 h-[calc(theme('height.screen')-64px-73px-theme('padding.12'))]"
-            wire:sortable="sorted"
-            wire:sortable-group="moved"
-            wire:sortable.options="{ ghostClass: 'opacity-30' }"
-            >
+            wire:sortable="sorted" wire:sortable-group="moved" wire:sortable.options="{ ghostClass: 'opacity-30' }">
 
             @foreach ($columns as $column)
                 <div wire:key="{{ $column->id }}" wire:sortable.item="{{ $column->id }}">

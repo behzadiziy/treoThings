@@ -38,6 +38,13 @@ class Board extends Model
         return $this->belongsTo(User::class, 'owner_id' , 'id');
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'board_user')
+                    ->withPivot('permission')
+                    ->withTimestamps();
+    }
+
     public function columns(): HasMany
     {
         return $this->hasMany(Column::class);
