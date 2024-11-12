@@ -32,7 +32,7 @@ class BoardShow extends Component
     {
         $order = collect($items)->pluck('value')->toArray();
         Column::setNewOrder($order, 1, 'id', function (Builder $query) {
-            $query->belongsTo(auth()->user());
+            $query->where('owner_id', auth()->id());
         });
     }
 

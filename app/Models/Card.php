@@ -47,7 +47,7 @@ class Card extends Model implements Sortable
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'owner_id', 'id');
     }
 
     public function column(): BelongsTo

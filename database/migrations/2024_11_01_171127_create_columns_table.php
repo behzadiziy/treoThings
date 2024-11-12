@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('owner_id')->constrained('users');
             $table->foreignId('board_id')->constrained();
             $table->unsignedInteger('order');
+            $table->timestamp('archived_at')->nullable();
             $table->timestamps();
         });
 
