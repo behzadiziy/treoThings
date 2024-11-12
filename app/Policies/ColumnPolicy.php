@@ -17,16 +17,16 @@ class ColumnPolicy
 
     public function archiveColumn(User $user, Column $column)
     {
-        return $user->id === $column->owner_id;
+        return $column->owner_id  === $user->id || $column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
     }
 
     public function updateColumn(User $user, Column $column)
     {
-        return $user->id === $column->owner_id;
+        return $column->owner_id === $user->id || $column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
     }
 
     public function createCard(User $user, Column $column)
     {
-        return $user->id === $column->owner_id;
+        return $column->owner_id === $user->id || $column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
     }
 }

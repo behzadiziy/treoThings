@@ -10,8 +10,10 @@ class BoardIndex extends Component
     #[Layout('layouts.app')]
     public function render()
     {
+        $boards = auth()->user()->ownedBoards->concat(auth()->user()->boards)->unique('id');
+
         return view('livewire.board-index', [
-            'boards' => auth()->user()->ownedBoards,
+            'boards' => $boards,
         ]);
     }
 }

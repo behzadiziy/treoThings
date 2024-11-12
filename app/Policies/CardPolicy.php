@@ -17,11 +17,11 @@ class CardPolicy
 
     public function archiveCard(User $user, Card $card)
     {
-        return $user->id === $card->owner_id;
+        return $user->id === $card->owner_id || $card->column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
     }
 
     public function updateCard(User $user, Card $card)
     {
-        return $user->id === $card->owner_id;
+        return $user->id  === $card->owner_id  || $card->column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
     }
 }

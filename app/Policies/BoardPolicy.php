@@ -18,11 +18,11 @@ class BoardPolicy
 
     public function show(User $user, Board $board)
     {
-        return $user->id === $board->owner_id;
+        return $board->owner_id === $user->id || $board->users->contains($user);
     }
 
     public function createColumn(User $user, Board $board)
     {
-        return $user->id = $board->owner_id;
+        return $board->owner_id === $user->id || $board->users()->where('user_id', $user->id)->where('permission', 'edit')->exists();
     }
 }
