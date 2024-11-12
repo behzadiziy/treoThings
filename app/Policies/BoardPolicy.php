@@ -18,11 +18,11 @@ class BoardPolicy
 
     public function show(User $user, Board $board)
     {
-        return $user->id === $board->user_id;
+        return $user->id === $board->owner_id;
     }
 
     public function createColumn(User $user, Board $board)
     {
-        return $user->id = $board->user_id;
+        return $user->id = $board->owner_id;
     }
 }

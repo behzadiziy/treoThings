@@ -23,7 +23,7 @@ class BoardFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'user_id' => User::factory(),
+            'owner_id' => User::factory(),
         ];
     }
 }

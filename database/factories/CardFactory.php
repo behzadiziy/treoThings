@@ -25,7 +25,7 @@ class CardFactory extends Factory
         return [
             'title' => $this->faker->sentence(4),
             'notes' => $this->faker->text(),
-            'user_id' => User::factory(),
+            'owner_id' => User::factory(),
             'column_id' => Column::factory(),
             'order' => $this->faker->randomNumber(),
         ];

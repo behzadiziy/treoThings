@@ -42,7 +42,7 @@ class BoardShow extends Component
             $columnId = $column->get('value');
             $order = $column->get('items')->pluck('value')->toArray();
 
-            Card::where('user_id', auth()->id())
+            Card::where('owner_id', auth()->id())
                 ->find($order)
                 ->where('column_id', '!=', $columnId)
                 ->each->update([
@@ -50,7 +50,7 @@ class BoardShow extends Component
                 ]);
 
             Card::setNewOrder($order, 1, 'id', function (Builder $query) {
-                $query->where('user_id', auth()->id());
+                $query->where('owner_id', auth()->id());
             });
         });
     }

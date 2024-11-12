@@ -20,9 +20,6 @@ class AddNewFriend extends ModalComponent
 
         $friend = User::where('email', $this->addNewFriendForm->email)->first();
 
-
-
-
         if (!$friend) {
             session()->flash('error', 'No user found with this email.');
             return;

@@ -27,7 +27,7 @@ class Column extends Model implements Sortable
      */
     protected $fillable = [
         'title',
-        'user_id',
+        'owner_id',
         'board_id',
         'order',
         'archived_at',
@@ -40,7 +40,7 @@ class Column extends Model implements Sortable
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
+        'owner_id' => 'integer',
         'board_id' => 'integer',
         'order' => 'integer',
     ];

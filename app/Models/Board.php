@@ -20,7 +20,7 @@ class Board extends Model
      */
     protected $fillable = [
         'title',
-        'user_id',
+        'owner_id',
     ];
 
     /**
@@ -30,7 +30,7 @@ class Board extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
+        'owner_id' => 'integer',
     ];
 
     public function user(): BelongsTo

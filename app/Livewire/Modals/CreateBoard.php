@@ -14,7 +14,7 @@ class CreateBoard extends ModalComponent
     {
         $this->createBoardForm->validate();
 
-        $board = auth()->user()->boards()->create($this->createBoardForm->only('title'));
+        $board = auth()->user()->ownedBoards()->create($this->createBoardForm->only('title'));
 
         return redirect()->route('boards.show', $board);
     }

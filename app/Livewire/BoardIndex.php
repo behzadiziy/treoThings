@@ -11,7 +11,7 @@ class BoardIndex extends Component
     public function render()
     {
         return view('livewire.board-index', [
-            'boards' => auth()->user()->boards,
+            'boards' => auth()->user()->ownedBoards,
         ]);
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('owner_id')->constrained('users');
             $table->timestamps();
         });
 

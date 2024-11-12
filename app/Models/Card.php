@@ -27,7 +27,7 @@ class Card extends Model implements Sortable
     protected $fillable = [
         'title',
         'notes',
-        'user_id',
+        'owner_id',
         'column_id',
         'order',
         'archived_at'
@@ -40,7 +40,7 @@ class Card extends Model implements Sortable
      */
     protected $casts = [
         'id' => 'integer',
-        'user_id' => 'integer',
+        'owner_id' => 'integer',
         'column_id' => 'integer',
         'order' => 'integer',
     ];

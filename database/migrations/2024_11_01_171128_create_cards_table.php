@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('notes')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('owner_id')->constrained('users');
             $table->foreignId('column_id')->constrained();
             $table->timestamp('archived_at')->nullable();
             $table->unsignedInteger('order');

@@ -49,9 +49,16 @@ class User extends Authenticatable
         ];
     }
 
-    public function boards(): HasMany
+    public function boards(): BelongsToMany
     {
-        return $this->hasMany(Board::class);
+        return $this->belongsToMany(Board::class, 'board_user')
+            ->withPivot('permission')
+            ->withTimestamps();
+    }
+
+    public function ownedBoards(): HasMany
+    {
+        return $this->hasMany(Board::class, 'owner_id');
     }
 
     public function friendsTo(): BelongsToMany

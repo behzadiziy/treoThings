@@ -17,11 +17,11 @@ class CardPolicy
 
     public function archiveCard(User $user, Card $card)
     {
-        return $user->id === $card->user_id;
+        return $user->id === $card->owner_id;
     }
 
     public function updateCard(User $user, Card $card)
     {
-        return $user->id === $card->user_id;
+        return $user->id === $card->owner_id;
     }
 }

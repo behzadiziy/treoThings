@@ -24,7 +24,7 @@ class ColumnFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'user_id' => User::factory(),
+            'owner_id' => User::factory(),
             'board_id' => Board::factory(),
             'order' => $this->faker->randomNumber(),
         ];

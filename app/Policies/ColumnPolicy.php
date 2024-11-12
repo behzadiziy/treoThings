@@ -17,16 +17,16 @@ class ColumnPolicy
 
     public function archiveColumn(User $user, Column $column)
     {
-        return $user->id === $column->user_id;
+        return $user->id === $column->owner_id;
     }
 
     public function updateColumn(User $user, Column $column)
     {
-        return $user->id === $column->user_id;
+        return $user->id === $column->owner_id;
     }
 
     public function createCard(User $user, Column $column)
     {
-        return $user->id === $column->user_id;
+        return $user->id === $column->owner_id;
     }
 }

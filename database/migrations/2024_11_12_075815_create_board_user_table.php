@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('columns', function (Blueprint $table) {
+        Schema::create('board_user', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('owner_id')->constrained('users');
-            $table->foreignId('board_id')->constrained();
-            $table->unsignedInteger('order');
+            $table->foreignId('board_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->unsignedTinyInteger('permission')->default(0);
+            $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('columns');
+        Schema::dropIfExists('board_user');
     }
 };
