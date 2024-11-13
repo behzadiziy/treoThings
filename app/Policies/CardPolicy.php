@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\BoardPermission;
 use App\Models\Card;
 use App\Models\User;
 
@@ -17,11 +18,12 @@ class CardPolicy
 
     public function archiveCard(User $user, Card $card)
     {
-        return $user->id === $card->owner_id || $card->column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
+        //dd(BoardPermission::EDIT);
+        return $user->id === $card->owner_id || $card->column->board->users()->where('user_id', $user->id)->where('permission', BoardPermission::EDIT->value)->exists();
     }
 
     public function updateCard(User $user, Card $card)
     {
-        return $user->id  === $card->owner_id  || $card->column->board->users()->where('user_id', $user->id)->where('permission', 1)->exists();
+        return $user->id  === $card->owner_id  || $card->column->board->users()->where('user_id', $user->id)->where('permission', BoardPermission::EDIT->value)->exists();
     }
 }

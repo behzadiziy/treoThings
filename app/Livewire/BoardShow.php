@@ -30,28 +30,27 @@ class BoardShow extends Component
 
     public function sorted(array $items)
     {
+        $this->authorize('canSort', $this->board);
+
         $order = collect($items)->pluck('value')->toArray();
-        Column::setNewOrder($order, 1, 'id', function (Builder $query) {
-            $query->where('owner_id', auth()->id());
-        });
+        Column::setNewOrder($order, 1, 'id');
     }
 
     public function moved(array $items)
     {
+        $this->authorize('canMove', $this->board);
+
         collect($items)->recursive()->each(function ($column) {
             $columnId = $column->get('value');
             $order = $column->get('items')->pluck('value')->toArray();
 
-            Card::where('owner_id', auth()->id())
-                ->find($order)
+            Card::find($order)
                 ->where('column_id', '!=', $columnId)
                 ->each->update([
                     'column_id' => $columnId,
                 ]);
 
-            Card::setNewOrder($order, 1, 'id', function (Builder $query) {
-                $query->where('owner_id', auth()->id());
-            });
+            Card::setNewOrder($order, 1, 'id');
         });
     }
 

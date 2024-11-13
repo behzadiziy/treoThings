@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BoardPermission;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('board_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedTinyInteger('permission')->default(0);
+            $table->string('permission')->default(BoardPermission::VIEW);
             $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
