@@ -41,4 +41,9 @@ class BoardPolicy
     {
         return auth()->id() === $board->owner_id;
     }
+
+    public function canRemoveUserFromBoard(User $user, Board $board)
+    {
+        return auth()->id() === $board->owner_id;
+    }
 }
