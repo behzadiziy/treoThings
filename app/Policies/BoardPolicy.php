@@ -36,4 +36,9 @@ class BoardPolicy
     {
         return $board->owner_id === $user->id || $board->users()->where('user_id', $user->id)->where('permission', BoardPermission::EDIT->value)->exists();
     }
+
+    public function canShareThisBoard(User $user, Board $board)
+    {
+        return auth()->id() === $board->owner_id;
+    }
 }
