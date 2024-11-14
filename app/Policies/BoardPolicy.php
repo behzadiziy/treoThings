@@ -46,4 +46,9 @@ class BoardPolicy
     {
         return auth()->id() === $board->owner_id;
     }
+
+    public function canUpdatePermission(User $user, Board $board)
+    {
+        return auth()->id() === $board->owner_id;
+    }
 }
