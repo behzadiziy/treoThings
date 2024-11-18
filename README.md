@@ -137,7 +137,7 @@ This project is licensed under the [MIT License](LICENSE).
 For any questions or feedback, feel free to contact me:
 
 - **GitHub**: [behzadiziy](https://github.com/behzadiziy)
-- **Email**: (behzadiziy@gmail.com)
+- **Email**: behzadiziy@gmail.com
 
 ---
 
