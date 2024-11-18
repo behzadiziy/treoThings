@@ -132,15 +132,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 📞 Contact
-
-For any questions or feedback, feel free to contact me:
-
-- **GitHub**: [behzadiziy](https://github.com/behzadiziy)
-- **Email**: behzadiziy@gmail.com
-
----
-
 ### ⭐ Acknowledgments
 
 - Thanks to the Laravel, Livewire, and Tailwind CSS communities for their amazing tools and support.
