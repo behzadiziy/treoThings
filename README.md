@@ -1,66 +1,151 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# TreoThings
 
-## About Laravel
+TreoThings is an open-source, Trello-inspired task management platform built with **Laravel**, **Livewire**, **Tailwind CSS**, and modern web development tools. It offers powerful real-time collaboration and task organization features for teams and individuals.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Board Management**: Create and manage boards to organize your projects.
+- **Column and Card Management**: Add, edit, and reorder columns and cards with drag-and-drop functionality.
+- **Real-Time Updates**: Collaborate in real-time using Livewire.
+- **Friend System**: Add friends and share boards for seamless teamwork.
+- **Role-Based Permissions**: Assign and manage user roles on shared boards.
+- **Modern UI**: Built with Tailwind CSS for a sleek and responsive design.
+- **Authentication**: Secure login and registration system powered by Laravel Breeze.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Built With
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Laravel](https://laravel.com/) - Backend framework
+- [Livewire](https://livewire.dev/) - Real-time frontend framework
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework for modern UI design
+- [MySQL](https://www.mysql.com/) - Database
+- [Breeze](https://laravel.com/docs/11.x/starter-kits#laravel-breeze) - Authentication starter kit
+- [Blueprint](https://github.com/laravel-shift/blueprint) (optional) - Code generator for Laravel applications
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🌀 Optional Feature: Blueprint Package
 
-## Laravel Sponsors
+TreoThings leverages the **Blueprint** package to streamline the creation of Laravel components, such as:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Models
+- Migrations
+- Controllers
+- Policies
+- Form Requests
 
-### Premium Partners
+Blueprint allows developers to define components in a concise **YAML-based DSL (Domain-Specific Language)** and auto-generate Laravel files, reducing boilerplate code and development time.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### How to Use Blueprint in TreoThings
 
-## Contributing
+1. **Install Blueprint** (if not already installed):
+   ```bash
+   composer require --dev laravel-shift/blueprint
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Define Components** in `draft.yaml`:
+   Example `draft.yaml`:
+   ```yaml
+   models:
+     Board:
+       name: string
+       description: text
+       user_id: id
+   ```
 
-## Code of Conduct
+3. **Run Blueprint Commands**:
+   Generate files:
+   ```bash
+   php artisan blueprint:build
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Review and adjust the generated files to fit your specific use case.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 🖥️ Demo
 
-## License
+Provide a link to a live demo or screenshots if available.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## ⚙️ Installation
+
+Follow these steps to set up TreoThings locally:
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/behzadiziy/treoThings.git
+   cd treoThings
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Set Environment Variables:**
+   Copy `.env.example` to `.env` and configure the database and other settings:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Run Migrations:**
+   ```bash
+   php artisan migrate
+   ```
+
+5. **Run the Application:**
+   Start the development server:
+   ```bash
+   php artisan serve
+   npm run dev
+   ```
+
+6. **Access the App:**
+   Open your browser and visit:
+   ```
+   http://localhost:8000
+   ```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-name`.
+3. Commit your changes: `git commit -m 'Add feature'`.
+4. Push to the branch: `git push origin feature-name`.
+5. Submit a pull request.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📞 Contact
+
+For any questions or feedback, feel free to contact me:
+
+- **GitHub**: [behzadiziy](https://github.com/behzadiziy)
+- **Email**: *(Add your email here if you'd like)*
+
+---
+
+### ⭐ Acknowledgments
+
+- Thanks to the Laravel, Livewire, and Tailwind CSS communities for their amazing tools and support.
+- Special mention to the **Blueprint** package for simplifying Laravel development.
+
+### 🌟 Show Your Support
+
+If you find this project helpful, please ⭐ it on GitHub!
