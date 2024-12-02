@@ -1,8 +1,27 @@
-<div class="cursor-pointer" wire:sortable-group.handle
-    wire:click="$dispatch('openModal' , { component : 'modals.edit-card' , arguments: { card: {{ $card->id }} } })">
-    <div class="bg-gray-200 rounded-lg px-3 py-1.5 flex items-center justify-between">
-        <div>{{ $card->title }}</div>
+<div class="cursor-pointer" wire:sortable-group.handle>
 
+    <div
+        class="bg-gray-200 rounded-lg px-3 py-1.5 flex items-center justify-between
+        {{ $is_card_done ? 'opacity-50' : '' }}">
+        <!-- Checkbox and Title -->
+        <div class="flex items-center gap-2">
+            <input type="checkbox"
+                class="form-checkbox w-5 h-5 rounded-lg text-gray-700 focus:ring-gray-400 border-gray-300"
+                wire:change="toggleTask({{ $card->id }})"
+                 title="Mark task as done"
+                {{ $is_card_done ? 'checked' : '' }}>
+            <span class="{{ $is_card_done ? 'line-through text-gray-500' : '' }}"
+                wire:click="$dispatch('openModal' , { component : 'modals.edit-card' , arguments: { card: {{ $card->id }} } })">
+                {{ $card->title }}
+            </span>
+        </div>
+        @if (session()->has('message'))
+            <div class="my-4 p-3 text-green-700 bg-green-100 border border-green-300 rounded">
+                {{ session('message') }}
+            </div>
+        @endif
+
+        <!-- Notes Icon -->
         @if ($card->notes)
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-4 text-gray-500">

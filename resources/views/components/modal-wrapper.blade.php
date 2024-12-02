@@ -10,6 +10,5 @@
 
         </button>
     </div>
-
     {{ $slot }}
 </div>
