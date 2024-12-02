@@ -1,7 +1,13 @@
-
 # TreoThings
 
 TreoThings is an open-source, Trello-inspired task management platform built with **Laravel**, **Livewire**, **Tailwind CSS**, and modern web development tools. It offers powerful real-time collaboration and task organization features for teams and individuals.
+
+## ✨ What's New in TreoThings
+
+The following features were recently added to enhance the platform:
+- Mark Tasks as Done: Users can now mark tasks as complete by checking them off, visually indicating progress on tasks.
+
+---
 
 ## 🚀 Features
 
@@ -131,6 +137,15 @@ Contributions are welcome! Follow these steps:
 This project is licensed under the [MIT License](LICENSE).
 
 ---
+
+## 📞 Contact
+For any questions or feedback, feel free to contact me:
+- ** Email **: behzada@gmail.com
+
+---
+
+
+
 
 ### ⭐ Acknowledgments
 
