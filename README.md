@@ -5,7 +5,7 @@ TreoThings is an open-source, Trello-inspired task management platform built wit
 ## ✨ What's New in TreoThings
 
 The following features were recently added to enhance the platform:
-- Mark Tasks as Done: Users can now mark tasks as complete by checking them off, visually indicating progress on tasks.
+- **Mark Tasks as Done**: Users can now mark tasks as complete by checking them off, visually indicating progress on tasks.
 
 ---
 
