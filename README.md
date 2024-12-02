@@ -71,12 +71,6 @@ Blueprint allows developers to define components in a concise **YAML-based DSL (
 
 ---
 
-## 🖥️ Demo
-
-Provide a link to a live demo or screenshots if available.
-
----
-
 ## ⚙️ Installation
 
 Follow these steps to set up TreoThings locally:
